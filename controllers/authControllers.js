@@ -5,12 +5,11 @@ const bcrypt = require('bcrypt')
 
 class authControllers{
     admin_login = async(req,res) => {
-        /*console.log(req.body)*/
-        const{email,password} = req.body
-        try{
+        const {email,password} = req.body
+        try {
             const admin = await adminModel.findOne({email}).select('+password')
-            console.log(admin)
-           if (admin) {
+             console.log(admin)
+            if (admin) {
                 const match = await bcrypt.compare(password, admin.password)
                 console.log(match)
            
@@ -28,11 +27,15 @@ class authControllers{
                 }
            
             } else {
-                responseReture(res,404,{error: "Email not found"})
-           }
+                responseReture(res,404,{error: "Email not Found"})
+            }
+            
         } catch (error) {
-                responseReture(res,500,{error: error.message})
+            responseReture(res,500,{error: error.message})
         }
+
+
+
     }
 }
 

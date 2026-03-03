@@ -18,10 +18,8 @@ app.use(cookieParser())
 
 app.use('/api', require('./routes/authRoutes'))
 
-app.get('/api', (req,res) => res.send('My Backend'))
+app.get('/', (req,res) => res.send('My Backend'))
 const port = process.env.PORT 
 dbConnect() 
-//app.listen(port, () => console.log(`Server is running on port ${port}`))
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
